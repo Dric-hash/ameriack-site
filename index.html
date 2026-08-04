@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ameriack I.T. Solutions — Logiciels de gestion pour les entreprises gabonaises</title>
+<meta name="description" content="PaieGabon, Caisse Ameriack, Projets Ameriack et Ameriack Ops : la suite logicielle de gestion conçue au Gabon, pour les entreprises gabonaises. Web et application de bureau.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --vert:#0f3d36; --vert-clair:#17564c; --or:#d99e0b; --or-fonce:#b06a12;
+    --parchemin:#f6f4ec; --encre:#12211d; --gris:#6b7280; --ligne:#e6e2d6;
+    --blanc:#ffffff;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',sans-serif;color:var(--encre);background:var(--parchemin);
+    line-height:1.6;-webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{font-family:'Space Grotesk',sans-serif}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+  /* ── En-tête ── */
+  header{
+    position:sticky;top:0;z-index:50;background:rgba(15,61,54,.97);
+    backdrop-filter:blur(8px);border-bottom:1px solid rgba(217,158,11,.25);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .logo{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk';
+    font-weight:700;font-size:1.15rem;color:var(--blanc)}
+  .logo .mark{width:34px;height:34px;border-radius:9px;background:var(--or);
+    color:var(--vert);display:grid;place-items:center;font-weight:700;font-size:1.1rem}
+  .logo span{color:var(--or)}
+  .nav-links{display:flex;gap:28px;align-items:center}
+  .nav-links a{color:rgba(255,255,255,.82);font-size:.92rem;font-weight:500;transition:color .2s}
+  .nav-links a:hover{color:var(--or)}
+  .nav-cta{background:var(--or);color:var(--vert)!important;padding:9px 18px;
+    border-radius:9px;font-weight:600}
+  .burger{display:none;background:none;border:none;color:var(--blanc);font-size:1.5rem;cursor:pointer}
+
+  /* ── Hero ── */
+  .hero{background:var(--vert);color:var(--blanc);position:relative;overflow:hidden;
+    padding:88px 0 96px}
+  .hero::before{content:"";position:absolute;inset:0;opacity:.06;
+    background-image:repeating-linear-gradient(0deg,transparent,transparent 38px,rgba(255,255,255,.4) 38px,rgba(255,255,255,.4) 39px);
+    pointer-events:none}
+  .hero::after{content:"";position:absolute;top:0;bottom:0;left:210px;width:1px;
+    background:rgba(217,158,11,.35);pointer-events:none}
+  .hero .wrap{position:relative}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--or);font-weight:600;margin-bottom:22px}
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--or)}
+  .hero h1{font-size:clamp(2.1rem,5vw,3.5rem);line-height:1.08;font-weight:700;
+    letter-spacing:-.02em;max-width:16ch}
+  .hero h1 em{font-style:normal;color:var(--or)}
+  .hero p.lead{font-size:1.16rem;color:rgba(255,255,255,.82);max-width:52ch;margin-top:24px}
+  .hero-actions{display:flex;gap:14px;margin-top:38px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:9px;padding:13px 24px;border-radius:11px;
+    font-weight:600;font-size:.96rem;cursor:pointer;transition:transform .15s,box-shadow .2s;border:none}
+  .btn-or{background:var(--or);color:var(--vert)}
+  .btn-or:hover{transform:translateY(-2px);box-shadow:0 10px 24px -8px rgba(217,158,11,.6)}
+  .btn-ghost{background:transparent;color:var(--blanc);border:1px solid rgba(255,255,255,.28)}
+  .btn-ghost:hover{border-color:var(--or);color:var(--or)}
+  .hero-stats{display:flex;gap:40px;margin-top:56px;flex-wrap:wrap}
+  .stat .n{font-family:'Space Grotesk';font-size:2rem;font-weight:700;color:var(--or)}
+  .stat .l{font-size:.86rem;color:rgba(255,255,255,.7)}
+
+  /* ── Sections ── */
+  section{padding:82px 0}
+  .sec-head{margin-bottom:52px;max-width:64ch}
+  .sec-head .eyebrow{color:var(--or-fonce)}
+  .sec-head .eyebrow::before{background:var(--or-fonce)}
+  .sec-head h2{font-size:clamp(1.7rem,3.5vw,2.5rem);color:var(--vert);line-height:1.12;
+    letter-spacing:-.02em;margin-top:6px}
+  .sec-head p{color:var(--gris);font-size:1.08rem;margin-top:16px}
+
+  /* ── Grille produits ── */
+  .products{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+  .card{background:var(--blanc);border:1px solid var(--ligne);border-radius:18px;
+    padding:32px;display:flex;flex-direction:column;transition:transform .2s,box-shadow .25s;position:relative;overflow:hidden}
+  .card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent,var(--or))}
+  .card:hover{transform:translateY(-4px);box-shadow:0 20px 44px -20px rgba(15,61,54,.28)}
+  .card-top{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+  .card-icon{width:52px;height:52px;border-radius:13px;display:grid;place-items:center;
+    background:var(--accent-bg,#eef4f2)}
+  .card-icon svg{width:26px;height:26px}
+  .card h3{font-size:1.3rem;color:var(--vert);font-weight:700}
+  .card .tagline{font-size:.82rem;color:var(--or-fonce);font-weight:600;letter-spacing:.02em}
+  .card p.desc{color:var(--gris);font-size:.96rem;margin:4px 0 20px;flex:1}
+  .card ul{list-style:none;margin-bottom:24px;display:flex;flex-direction:column;gap:9px}
+  .card ul li{font-size:.9rem;color:var(--encre);display:flex;align-items:flex-start;gap:9px}
+  .card ul li svg{width:17px;height:17px;flex-shrink:0;margin-top:3px;color:var(--vert-clair)}
+  .card-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto}
+  .btn-sm{padding:10px 16px;border-radius:9px;font-size:.88rem;font-weight:600;
+    display:inline-flex;align-items:center;gap:7px;transition:all .18s}
+  .btn-web{background:var(--vert);color:var(--blanc)}
+  .btn-web:hover{background:var(--vert-clair)}
+  .btn-dl{background:var(--or);color:var(--vert)}
+  .btn-dl:hover{filter:brightness(1.06)}
+  .btn-line{background:transparent;color:var(--vert);border:1px solid var(--ligne)}
+  .btn-line:hover{border-color:var(--vert)}
+  .badge-web{position:absolute;top:20px;right:24px;font-size:.68rem;font-weight:600;
+    text-transform:uppercase;letter-spacing:.06em;color:var(--gris);
+    background:var(--parchemin);padding:4px 10px;border-radius:20px}
+
+  /* ── Bandeau bureau ── */
+  .desktop{background:var(--vert);color:var(--blanc);border-radius:24px;padding:56px;
+    display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;position:relative;overflow:hidden}
+  .desktop::after{content:"";position:absolute;right:-60px;top:-60px;width:260px;height:260px;
+    border-radius:50%;background:radial-gradient(circle,rgba(217,158,11,.22),transparent 70%)}
+  .desktop h2{font-size:1.9rem;color:var(--blanc);position:relative}
+  .desktop p{color:rgba(255,255,255,.8);margin-top:14px;position:relative}
+  .desktop .win-box{position:relative;background:rgba(255,255,255,.06);
+    border:1px solid rgba(217,158,11,.3);border-radius:16px;padding:26px}
+  .desktop .win-box h4{font-family:'Space Grotesk';color:var(--or);margin-bottom:14px;font-size:1rem}
+  .win-item{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.1)}
+  .win-item:last-child{border-bottom:none}
+  .win-item .ico{width:36px;height:36px;border-radius:9px;background:var(--or);color:var(--vert);
+    display:grid;place-items:center;font-weight:700;flex-shrink:0}
+  .win-item .txt{flex:1}
+  .win-item .txt b{display:block;font-size:.94rem}
+  .win-item .txt span{font-size:.78rem;color:rgba(255,255,255,.6)}
+  .win-item a{font-size:.8rem;color:var(--or);font-weight:600;white-space:nowrap}
+
+  /* ── Comment ça marche ── */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;counter-reset:step}
+  .step{position:relative;padding-top:20px}
+  .step .num{font-family:'Space Grotesk';font-size:.85rem;font-weight:700;color:var(--or-fonce);
+    letter-spacing:.1em;margin-bottom:12px}
+  .step h4{font-size:1.15rem;color:var(--vert);margin-bottom:8px}
+  .step p{color:var(--gris);font-size:.94rem}
+  .step::before{content:"";position:absolute;top:0;left:0;width:44px;height:3px;background:var(--or)}
+
+  /* ── Contact ── */
+  #contact{background:var(--encre);color:var(--blanc)}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+  #contact .eyebrow{color:var(--or)}
+  #contact .eyebrow::before{background:var(--or)}
+  #contact h2{color:var(--blanc);font-size:2.1rem}
+  #contact p.lead{color:rgba(255,255,255,.72);margin-top:16px;font-size:1.06rem}
+  .contact-list{display:flex;flex-direction:column;gap:22px;margin-top:8px}
+  .ci{display:flex;gap:16px;align-items:flex-start}
+  .ci-ico{width:46px;height:46px;border-radius:12px;background:rgba(217,158,11,.15);
+    display:grid;place-items:center;flex-shrink:0}
+  .ci-ico svg{width:22px;height:22px;color:var(--or)}
+  .ci .k{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.5)}
+  .ci .v{font-size:1.05rem;font-weight:500;margin-top:2px}
+  .ci .v a:hover{color:var(--or)}
+
+  /* ── Pied ── */
+  footer{background:var(--vert);color:rgba(255,255,255,.7);padding:40px 0;
+    border-top:1px solid rgba(217,158,11,.2)}
+  .foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+  .foot .logo{font-size:1rem}
+  .foot-links{display:flex;gap:22px;font-size:.88rem}
+  .foot-links a:hover{color:var(--or)}
+  .foot-copy{font-size:.82rem;color:rgba(255,255,255,.5);margin-top:8px;width:100%}
+
+  /* ── Responsive ── */
+  @media(max-width:860px){
+    .nav-links{display:none;position:absolute;top:66px;left:0;right:0;background:var(--vert);
+      flex-direction:column;padding:18px 24px;gap:16px;border-bottom:1px solid rgba(217,158,11,.25)}
+    .nav-links.open{display:flex}
+    .burger{display:block}
+    .products{grid-template-columns:1fr}
+    .desktop{grid-template-columns:1fr;padding:36px}
+    .steps{grid-template-columns:1fr}
+    .contact-grid{grid-template-columns:1fr;gap:36px}
+    .hero::after{display:none}
+    section{padding:60px 0}
+  }
+</style>
+</head>
+<body>
+
+<!-- En-tête -->
+<header>
+  <div class="wrap nav">
+    <a href="#" class="logo"><span class="mark">A</span>Ameriack<span>&nbsp;I.T.</span></a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#produits">Logiciels</a>
+      <a href="#bureau">Applications bureau</a>
+      <a href="#demarrer">Comment démarrer</a>
+      <a href="#contact" class="nav-cta">Nous contacter</a>
+    </nav>
+    <button class="burger" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Édité au Gabon, pour le Gabon</span>
+    <h1>Vos outils de gestion, <em>tenus au cordeau.</em></h1>
+    <p class="lead">Ameriack I.T. Solutions conçoit la suite logicielle qui fait tourner votre entreprise&nbsp;: paie, caisse, chantiers, opérations. Sur le web, ou installés sur votre poste comme un vrai logiciel.</p>
+    <div class="hero-actions">
+      <a href="#produits" class="btn btn-or">Découvrir les logiciels</a>
+      <a href="#bureau" class="btn btn-ghost">Télécharger les applications</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="n">4</div><div class="l">logiciels métier</div></div>
+      <div class="stat"><div class="n">100%</div><div class="l">conçu au Gabon</div></div>
+      <div class="stat"><div class="n">Web + Bureau</div><div class="l">accès partout</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Produits -->
+<section id="produits">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">La suite Ameriack</span>
+      <h2>Quatre logiciels, une même exigence</h2>
+      <p>Chaque outil règle un problème concret de l'entreprise gabonaise, dans le respect de la réglementation locale. Accessibles depuis n'importe quel navigateur — et pour la paie et la caisse, installables sur votre ordinateur.</p>
+    </div>
+
+    <div class="products">
+
+      <!-- PaieGabon -->
+      <article class="card" style="--accent:#0f3d36;--accent-bg:#e7f0ed">
+        <div class="card-top">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#0f3d36" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 14h3M8 17h6"/></svg>
+          </div>
+          <div>
+            <h3>PaieGabon</h3>
+            <div class="tagline">Paie &amp; ressources humaines</div>
+          </div>
+        </div>
+        <p class="desc">La paie conforme au Code du travail gabonais&nbsp;: bulletins, conventions collectives, heures supplémentaires, CNSS, IRPP. Salariés et journaliers.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Bulletins conformes et barèmes à jour</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Pointage mensuel importable en un fichier</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Déclarations sociales et fiscales</li>
+        </ul>
+        <div class="card-actions">
+          <a href="https://paiegabon.com" class="btn-sm btn-web" target="_blank" rel="noopener">Ouvrir sur le web</a>
+          <a href="#bureau" class="btn-sm btn-dl">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/></svg>
+            Télécharger
+          </a>
+        </div>
+      </article>
+
+      <!-- Caisse Ameriack -->
+      <article class="card" style="--accent:#d99e0b;--accent-bg:#fbf2df">
+        <div class="card-top">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#b06a12" stroke-width="1.8"><rect x="2" y="6" width="20" height="13" rx="2"/><path d="M2 10h20M6 15h4"/></svg>
+          </div>
+          <div>
+            <h3>Caisse Ameriack</h3>
+            <div class="tagline">Trésorerie &amp; caisse</div>
+          </div>
+        </div>
+        <p class="desc">La tenue de caisse rigoureuse&nbsp;: entrées et sorties justifiées à la pièce, rapports journaliers, clôtures, export comptable. Interconnectée avec la paie.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Numéro de pièce sur chaque opération</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Rapports et exports Excel</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Multi-comptes et multi-devises</li>
+        </ul>
+        <div class="card-actions">
+          <a href="https://caisse.ameriack.com" class="btn-sm btn-web" target="_blank" rel="noopener">Ouvrir sur le web</a>
+          <a href="#bureau" class="btn-sm btn-dl">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/></svg>
+            Télécharger
+          </a>
+        </div>
+      </article>
+
+      <!-- Projets Ameriack -->
+      <article class="card" style="--accent:#17564c;--accent-bg:#e7f0ed">
+        <span class="badge-web">Web</span>
+        <div class="card-top">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#17564c" stroke-width="1.8"><path d="M3 3v18h18"/><rect x="7" y="12" width="3" height="6"/><rect x="12" y="8" width="3" height="10"/><rect x="17" y="5" width="3" height="13"/></svg>
+          </div>
+          <div>
+            <h3>Projets Ameriack</h3>
+            <div class="tagline">Pilotage de chantiers BTP</div>
+          </div>
+        </div>
+        <p class="desc">Le tableau de bord du chef de chantier&nbsp;: avancement des lots, contrôle des coûts, planning et jalons, facturation à l'avancement. Coût et délai sous contrôle.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Marge réelle par chantier</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Frise de planning et jalons</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Situations de travaux</li>
+        </ul>
+        <div class="card-actions">
+          <a href="https://projets.ameriack.com" class="btn-sm btn-web" target="_blank" rel="noopener">Ouvrir sur le web</a>
+        </div>
+      </article>
+
+      <!-- Ameriack Ops -->
+      <article class="card" style="--accent:#b06a12;--accent-bg:#fbf2df">
+        <span class="badge-web">Web</span>
+        <div class="card-top">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#b06a12" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l2.5 2.5M16.5 16.5L19 19M19 5l-2.5 2.5M7.5 16.5L5 19"/></svg>
+          </div>
+          <div>
+            <h3>Ameriack Ops</h3>
+            <div class="tagline">Opérations &amp; activité</div>
+          </div>
+        </div>
+        <p class="desc">Le poste de commande des opérations quotidiennes de l'entreprise. Pensé pour s'articuler avec la paie, la caisse et les chantiers.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Vue d'ensemble de l'activité</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Interconnecté à la suite Ameriack</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Accessible depuis n'importe où</li>
+        </ul>
+        <div class="card-actions">
+          <a href="https://ops.ameriack.com" class="btn-sm btn-web" target="_blank" rel="noopener">Ouvrir sur le web</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- Bandeau applications bureau -->
+<section id="bureau">
+  <div class="wrap">
+    <div class="desktop">
+      <div>
+        <span class="eyebrow" style="color:var(--or)"><span style="width:26px;height:1px;background:var(--or);display:inline-block"></span> Applications de bureau</span>
+        <h2>Vos logiciels, installés sur votre poste</h2>
+        <p>PaieGabon et Caisse Ameriack existent aussi en version Windows à installer&nbsp;: une icône sur le bureau, l'application en plein écran, sans passer par le navigateur. Une connexion Internet reste nécessaire.</p>
+        <p style="font-size:.86rem;margin-top:18px;color:rgba(255,255,255,.6)">À la première ouverture, Windows peut afficher un message de sécurité. C'est normal pour un nouveau logiciel&nbsp;: cliquez sur «&nbsp;Informations complémentaires&nbsp;» puis «&nbsp;Exécuter quand même&nbsp;». L'éditeur indiqué est Ameriack&nbsp;I.T.&nbsp;Solutions.</p>
+      </div>
+      <div class="win-box">
+        <h4>Télécharger pour Windows</h4>
+        <!-- Remplacez les liens # par vos liens GitHub Releases une fois publiés -->
+        <div class="win-item">
+          <div class="ico">P</div>
+          <div class="txt"><b>PaieGabon</b><span>Windows · installateur .exe</span></div>
+          <a href="#" data-dl="paiegabon" onclick="return telecharger(event,'PaieGabon')">Télécharger</a>
+        </div>
+        <div class="win-item">
+          <div class="ico">C</div>
+          <div class="txt"><b>Caisse Ameriack</b><span>Windows · installateur .exe</span></div>
+          <a href="#" data-dl="caisse" onclick="return telecharger(event,'Caisse Ameriack')">Télécharger</a>
+        </div>
+        <p style="font-size:.78rem;color:rgba(255,255,255,.5);margin-top:16px">Projets et Ops sont disponibles directement sur le web, sans installation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Comment démarrer -->
+<section id="demarrer">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Comment démarrer</span>
+      <h2>De la découverte à l'utilisation</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="num">ÉTAPE 1</div>
+        <h4>Choisissez votre logiciel</h4>
+        <p>Identifiez l'outil qui répond à votre besoin — paie, caisse, chantiers ou opérations — et ouvrez-le sur le web pour le découvrir.</p>
+      </div>
+      <div class="step">
+        <div class="num">ÉTAPE 2</div>
+        <h4>Contactez-nous pour votre compte</h4>
+        <p>Nous créons votre espace entreprise et configurons vos accès. Vous recevez vos identifiants et un accompagnement au démarrage.</p>
+      </div>
+      <div class="step">
+        <div class="num">ÉTAPE 3</div>
+        <h4>Installez ou utilisez sur le web</h4>
+        <p>Travaillez depuis votre navigateur, ou installez l'application de bureau pour la paie et la caisse. À vous de choisir.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div>
+        <span class="eyebrow">Nous contacter</span>
+        <h2>Parlons de votre entreprise</h2>
+        <p class="lead">Une question, une démonstration, la création de votre compte&nbsp;? Notre équipe vous répond et vous accompagne à chaque étape.</p>
+      </div>
+      <div class="contact-list">
+        <div class="ci">
+          <div class="ci-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>
+          <div><div class="k">Email</div><div class="v"><a href="mailto:infospaiegabon@paiegabon.com">infospaiegabon@paiegabon.com</a></div></div>
+        </div>
+        <div class="ci">
+          <div class="ci-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.3 1.8.6 2.6a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.5-1.1a2 2 0 012.1-.5c.8.3 1.7.5 2.6.6a2 2 0 011.7 2z"/></svg></div>
+          <div><div class="k">Téléphone / WhatsApp</div><div class="v"><a href="tel:+241XXXXXXXX">+241 XX XX XX XX</a> <span style="font-size:.8rem;color:var(--gris)">(à compléter)</span></div></div>
+        </div>
+        <div class="ci">
+          <div class="ci-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><div class="k">Localisation</div><div class="v">Libreville, Gabon</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pied -->
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <a href="#" class="logo"><span class="mark">A</span>Ameriack<span>&nbsp;I.T.</span></a>
+      <div class="foot-links">
+        <a href="#produits">Logiciels</a>
+        <a href="#bureau">Bureau</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="foot-copy">© 2026 Ameriack I.T. Solutions — Tous droits réservés · Libreville, Gabon</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Liens de téléchargement — à remplir avec vos URL GitHub Releases.
+  // Laissez vide ("") pour proposer automatiquement le contact à la place.
+  var LIENS = {
+    paiegabon: "",   // ex: "https://github.com/Dric-hash/.../releases/download/v1.0.0/PaieGabon-Setup-1.0.0.exe"
+    caisse:    ""    // ex: "https://github.com/.../releases/download/v1.0.0/Caisse-Ameriack-Setup-1.0.0.exe"
+  };
+
+  function telecharger(e, nom){
+    e.preventDefault();
+    var cle = e.currentTarget.getAttribute('data-dl');
+    var url = LIENS[cle];
+    if(url){
+      window.location.href = url;           // téléchargement direct si le lien existe
+    } else {
+      // Sinon, on bascule vers le contact avec un email pré-rempli
+      window.location.href = "mailto:infospaiegabon@paiegabon.com"
+        + "?subject=" + encodeURIComponent("Demande du logiciel " + nom)
+        + "&body=" + encodeURIComponent("Bonjour,\n\nJe souhaite recevoir l'application " + nom + " pour Windows.\n\nMerci.");
+    }
+    return false;
+  }
+
+  // Fermer le menu mobile au clic sur un lien
+  document.querySelectorAll('#navLinks a').forEach(function(a){
+    a.addEventListener('click', function(){
+      document.getElementById('navLinks').classList.remove('open');
+    });
+  });
+</script>
+</body>
+</html>
