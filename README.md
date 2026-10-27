@@ -22,4 +22,4 @@ Après une modification de `site.css` ou `site.js`, changer `?v=…` dans `index
 ## Téléchargements Windows
 Liens GitHub Releases (v1.0.0) dans la section « Applications Windows » de `index.html`.
 
-© 2026 Ameriack I.T. Solutions — Franceville, Gabon
+© 2026 Ameriack I.T. Solutions — Libreville, Gabon
