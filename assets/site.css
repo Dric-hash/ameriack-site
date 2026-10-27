@@ -1,0 +1,203 @@
+/* Ameriack I.T. Solutions — site vitrine. Identité de la suite : vert profond, crème, or ;
+   Fraunces pour les titres, IBM Plex Sans pour le texte (polices hébergées, licence SIL OFL). */
+@font-face{font-family:"Fraunces";font-style:normal;font-weight:600;font-display:swap;
+  src:url("fonts/fraunces-latin-600-normal.woff2") format("woff2")}
+@font-face{font-family:"IBM Plex Sans";font-style:normal;font-weight:400;font-display:swap;
+  src:url("fonts/ibm-plex-sans-latin-400-normal.woff2") format("woff2")}
+@font-face{font-family:"IBM Plex Sans";font-style:normal;font-weight:500 700;font-display:swap;
+  src:url("fonts/ibm-plex-sans-latin-600-normal.woff2") format("woff2")}
+
+:root{
+  --vert:#0F3D36;--vert-2:#1B5A50;--vert-3:#16473F;--or:#E9B043;--brun:#7A5200;
+  --creme:#FAF8F2;--papier:#F3F0E7;--encre:#1F2A28;--gris:#5E6864;--ligne:#E2DDD0;--blanc:#fff;
+  --ombre:0 18px 40px -22px rgba(15,61,54,.35);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{font-family:"IBM Plex Sans",system-ui,sans-serif;color:var(--encre);background:var(--creme);line-height:1.6;
+  -webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:"Fraunces",Georgia,serif;font-weight:600;color:var(--vert);letter-spacing:-.01em;line-height:1.1}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+.sauter{position:absolute;left:-999px;top:8px;background:var(--or);color:var(--vert);padding:8px 14px;border-radius:8px;z-index:100}
+.sauter:focus{left:16px}
+:focus-visible{outline:3px solid var(--or);outline-offset:2px;border-radius:4px}
+
+/* ── En-tête ── */
+.entete{position:sticky;top:0;z-index:50;background:rgba(250,248,242,.94);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--ligne)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:20px;height:72px}
+.nav .marque img{height:40px;width:auto}
+.menu{display:flex;align-items:center;gap:26px;list-style:none}
+.menu a{text-decoration:none;font-weight:500;font-size:.95rem;color:var(--encre)}
+.menu a:hover{color:var(--vert-2)}
+.menu .btn{color:var(--blanc)}
+.burger{display:none;width:44px;height:44px;border:1px solid var(--ligne);border-radius:10px;background:var(--blanc);
+  align-items:center;justify-content:center;cursor:pointer}
+.burger span,.burger span::before,.burger span::after{display:block;width:18px;height:2px;background:var(--vert);position:relative;content:""}
+.burger span::before{position:absolute;top:-6px}.burger span::after{position:absolute;top:6px}
+
+/* ── Boutons ── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 22px;border-radius:10px;
+  font-weight:600;font-size:.97rem;text-decoration:none;border:1px solid transparent;cursor:pointer;
+  transition:transform .15s,box-shadow .2s,background .2s}
+.btn-vert{background:var(--vert);color:var(--blanc)}
+.btn-vert:hover{background:var(--vert-2)}
+.btn-or{background:var(--or);color:var(--vert)}
+.btn-or:hover{transform:translateY(-1px);box-shadow:0 10px 22px -10px rgba(233,176,67,.8)}
+.btn-ligne{background:transparent;color:var(--vert);border-color:var(--ligne)}
+.btn-ligne:hover{border-color:var(--vert)}
+.btn-clair{background:transparent;color:var(--creme);border-color:rgba(250,248,242,.35)}
+.btn-clair:hover{border-color:var(--or);color:var(--or)}
+.btn-petit{min-height:40px;padding:0 15px;font-size:.9rem}
+
+/* ── Titres de section ── */
+.surtitre{display:inline-flex;align-items:center;gap:10px;font-size:.78rem;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--brun)}
+.surtitre::before{content:"";width:24px;height:2px;background:var(--or)}
+.tete{max-width:680px;margin-bottom:44px}
+.tete h2{font-size:clamp(1.75rem,3.4vw,2.55rem);margin-top:12px}
+.tete p{color:var(--gris);font-size:1.07rem;margin-top:14px}
+section{padding:88px 0}
+
+/* ── Accueil ── */
+.accueil{padding:72px 0 84px;background:
+  linear-gradient(180deg,var(--creme) 0%,var(--papier) 100%)}
+.accueil .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+.accueil h1{font-size:clamp(2.2rem,5vw,3.6rem);margin-top:16px;max-width:15ch}
+.accueil h1 em{font-style:normal;color:var(--vert-2);background:linear-gradient(transparent 68%,rgba(233,176,67,.55) 68%)}
+.accueil .chapo{font-size:1.15rem;color:var(--gris);max-width:52ch;margin-top:22px}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.faits{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:30px;list-style:none;font-size:.92rem;color:var(--gris)}
+.faits li{display:flex;align-items:center;gap:8px}
+.faits li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--or)}
+
+.planche{background:var(--vert);border-radius:24px;padding:28px;box-shadow:var(--ombre);position:relative;overflow:hidden}
+.planche::after{content:"";position:absolute;inset:auto -80px -80px auto;width:240px;height:240px;border-radius:50%;
+  background:radial-gradient(circle,rgba(233,176,67,.22),transparent 70%)}
+.planche h2{font-family:"IBM Plex Sans",sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--or);margin-bottom:16px}
+.tuiles{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;position:relative;z-index:1}
+.tuile{display:flex;align-items:center;gap:12px;padding:14px;border-radius:14px;background:rgba(250,248,242,.06);
+  border:1px solid rgba(250,248,242,.12);color:var(--creme);text-decoration:none;transition:background .2s,border-color .2s}
+.tuile:hover{background:rgba(250,248,242,.12);border-color:rgba(233,176,67,.5)}
+.tuile img{width:44px;height:44px;border-radius:11px;flex-shrink:0}
+.tuile b{display:block;font-size:.98rem}
+.tuile span{display:block;font-size:.8rem;color:rgba(250,248,242,.68);line-height:1.35}
+.tuile.large{grid-column:1/-1}
+
+/* ── Solutions ── */
+.solutions{display:grid;grid-template-columns:repeat(6,1fr);gap:22px}
+.carte{grid-column:span 2;background:var(--blanc);border:1px solid var(--ligne);border-radius:18px;padding:28px;
+  display:flex;flex-direction:column;transition:transform .2s,box-shadow .25s}
+.carte.large{grid-column:span 3}
+.carte:hover{transform:translateY(-3px);box-shadow:var(--ombre)}
+.carte-tete{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.carte-tete img{width:52px;height:52px;border-radius:13px}
+.carte h3{font-size:1.32rem}
+.carte .domaine{font-size:.8rem;font-weight:600;color:var(--brun);letter-spacing:.03em}
+.carte .accroche{font-family:"Fraunces",Georgia,serif;font-size:1.06rem;color:var(--vert-2);margin-bottom:8px}
+.carte p{color:var(--gris);font-size:.95rem}
+.carte ul{list-style:none;margin:16px 0 22px;display:grid;gap:9px}
+.carte li{font-size:.92rem;padding-left:24px;position:relative}
+.carte li::before{content:"";position:absolute;left:2px;top:.5em;width:12px;height:7px;border-left:2px solid var(--vert-2);
+  border-bottom:2px solid var(--vert-2);transform:rotate(-45deg)}
+.carte li b{color:var(--vert)}
+.carte .actions{margin-top:auto;gap:10px}
+
+/* ── Suite reliée ── */
+.fond-papier{background:var(--papier)}
+.liens{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.lien{background:var(--blanc);border:1px solid var(--ligne);border-radius:16px;padding:24px}
+.lien .paire{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.lien .paire img{width:36px;height:36px;border-radius:9px}
+.lien .paire i{width:22px;height:2px;background:var(--or);position:relative}
+.lien .paire i::after{content:"";position:absolute;right:-1px;top:-4px;border:5px solid transparent;border-left:6px solid var(--or);border-right:0}
+.lien .paire i.plus{width:14px;height:14px;background:none}
+.lien .paire i.plus::before,.lien .paire i.plus::after{content:"";position:absolute;background:var(--or);border:0}
+.lien .paire i.plus::before{left:0;right:0;top:6px;height:2px}
+.lien .paire i.plus::after{top:0;bottom:0;left:6px;width:2px;right:auto}
+.lien h3{font-size:1.08rem;margin-bottom:6px}
+.lien p{font-size:.93rem;color:var(--gris)}
+
+/* ── Engagements ── */
+.engagements{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+.engagement{border-top:3px solid var(--or);padding-top:18px}
+.engagement h3{font-size:1.12rem;margin-bottom:8px}
+.engagement p{font-size:.94rem;color:var(--gris)}
+
+/* ── Bureau Windows ── */
+.bureau{background:var(--vert);color:var(--creme);border-radius:24px;padding:48px;display:grid;
+  grid-template-columns:1.2fr 1fr;gap:40px;align-items:center}
+.bureau h2{color:var(--creme);font-size:clamp(1.6rem,3vw,2.1rem);margin-top:12px}
+.bureau .surtitre{color:var(--or)}
+.bureau p{color:rgba(250,248,242,.8);margin-top:14px}
+.bureau .note{font-size:.86rem;color:rgba(250,248,242,.62)}
+.telechargements{background:rgba(250,248,242,.06);border:1px solid rgba(233,176,67,.3);border-radius:16px;padding:8px 20px}
+.dl{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid rgba(250,248,242,.1)}
+.dl:last-child{border-bottom:none}
+.dl img{width:40px;height:40px;border-radius:10px}
+.dl div{flex:1}
+.dl b{display:block}
+.dl span{font-size:.8rem;color:rgba(250,248,242,.6)}
+.dl a{color:var(--or);font-weight:600;font-size:.9rem;text-decoration:none;white-space:nowrap;min-height:44px;display:inline-flex;align-items:center}
+.dl a:hover{text-decoration:underline}
+
+/* ── Démarrer ── */
+.etapes{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;counter-reset:etape;list-style:none}
+.etapes li{counter-increment:etape;background:var(--blanc);border:1px solid var(--ligne);border-radius:16px;padding:26px}
+.etapes li::before{content:counter(etape);display:grid;place-items:center;width:38px;height:38px;border-radius:50%;
+  background:var(--vert);color:var(--or);font-family:"Fraunces",Georgia,serif;font-size:1.1rem;margin-bottom:14px}
+.etapes h3{font-size:1.15rem;margin-bottom:6px}
+.etapes p{font-size:.94rem;color:var(--gris)}
+
+/* ── Contact ── */
+.contact{background:var(--vert);color:var(--creme)}
+.contact .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.contact h2{color:var(--creme);font-size:clamp(1.8rem,3.4vw,2.4rem);margin-top:12px}
+.contact .surtitre{color:var(--or)}
+.contact .chapo{color:rgba(250,248,242,.78);margin-top:16px;font-size:1.06rem}
+.coordonnees{list-style:none;display:grid;gap:18px}
+.coordonnees li{display:flex;gap:16px;align-items:flex-start}
+.coordonnees svg{width:22px;height:22px;flex-shrink:0;margin-top:3px;color:var(--or)}
+.coordonnees .k{font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(250,248,242,.6)}
+.coordonnees .v{font-size:1.06rem;font-weight:500}
+.coordonnees a{text-decoration:none}
+.coordonnees a:hover{color:var(--or)}
+
+/* ── Pied ── */
+.pied{background:#0B2F2A;color:rgba(250,248,242,.72);padding:44px 0 32px;font-size:.9rem}
+.pied .wrap{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:32px}
+.pied img{height:38px;width:auto;margin-bottom:12px}
+.pied h2{font-family:"IBM Plex Sans",sans-serif;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--or);margin-bottom:12px}
+.pied ul{list-style:none;display:grid;gap:8px}
+.pied a{text-decoration:none}
+.pied a:hover{color:var(--or)}
+.pied .bas{grid-column:1/-1;border-top:1px solid rgba(250,248,242,.12);padding-top:18px;font-size:.82rem;color:rgba(250,248,242,.5)}
+
+/* ── Écrans moyens et téléphones ── */
+@media (max-width:980px){
+  .accueil .wrap{grid-template-columns:1fr;gap:40px}
+  .solutions{grid-template-columns:1fr 1fr}
+  .carte,.carte.large{grid-column:span 1}
+  .liens{grid-template-columns:1fr}
+  .engagements{grid-template-columns:1fr 1fr}
+  .bureau{grid-template-columns:1fr;padding:32px}
+}
+@media (max-width:760px){
+  .burger{display:inline-flex}
+  .menu{display:none;position:absolute;top:72px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;
+    background:var(--creme);border-bottom:1px solid var(--ligne);padding:8px 24px 18px}
+  .menu.ouvert{display:flex}
+  .menu a{display:block;padding:12px 0}
+  .menu .btn{margin-top:8px}
+  .nav .marque img{height:34px}
+  section{padding:64px 0}
+  .accueil{padding:44px 0 56px}
+  .solutions,.engagements,.etapes{grid-template-columns:1fr}
+  .tuiles{grid-template-columns:1fr}
+  .contact .wrap,.pied .wrap{grid-template-columns:1fr;gap:32px}
+  .actions .btn{flex:1 1 auto}
+}
