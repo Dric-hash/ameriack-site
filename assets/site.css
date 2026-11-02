@@ -14,7 +14,8 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}
+  .apparait{opacity:1!important;transform:none!important}[data-relief] img{transform:none!important}}
 body{font-family:"IBM Plex Sans",system-ui,sans-serif;color:var(--encre);background:var(--creme);line-height:1.6;
   -webkit-font-smoothing:antialiased}
 img{max-width:100%;display:block}
@@ -63,9 +64,10 @@ h1,h2,h3{font-family:"Fraunces",Georgia,serif;font-weight:600;color:var(--vert);
 section{padding:88px 0}
 
 /* ── Accueil ── */
-.accueil{padding:72px 0 84px;background:
-  linear-gradient(180deg,var(--creme) 0%,var(--papier) 100%)}
-.accueil .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+.accueil{padding:56px 0 40px;overflow:hidden;position:relative;
+  background:radial-gradient(60% 70% at 78% 42%,rgba(233,176,67,.16) 0%,rgba(233,176,67,0) 62%),
+             linear-gradient(180deg,var(--creme) 0%,var(--papier) 100%)}
+.accueil-grille{display:grid;grid-template-columns:1fr 1.08fr;gap:32px;align-items:center}
 .accueil h1{font-size:clamp(2.2rem,5vw,3.6rem);margin-top:16px;max-width:15ch}
 .accueil h1 em{font-style:normal;color:var(--vert-2);background:linear-gradient(transparent 68%,rgba(233,176,67,.55) 68%)}
 .accueil .chapo{font-size:1.15rem;color:var(--gris);max-width:52ch;margin-top:22px}
@@ -73,42 +75,56 @@ section{padding:88px 0}
 .faits{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:30px;list-style:none;font-size:.92rem;color:var(--gris)}
 .faits li{display:flex;align-items:center;gap:8px}
 .faits li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--or)}
+/* Visuel 3D : déborde légèrement à droite, sans jamais créer de défilement horizontal */
+.accueil-visuel{margin:0 -40px 0 -24px;position:relative}
+.accueil-visuel img{width:100%;height:auto}
 
-.planche{background:var(--vert);border-radius:24px;padding:28px;box-shadow:var(--ombre);position:relative;overflow:hidden}
-.planche::after{content:"";position:absolute;inset:auto -80px -80px auto;width:240px;height:240px;border-radius:50%;
-  background:radial-gradient(circle,rgba(233,176,67,.22),transparent 70%)}
-.planche h2{font-family:"IBM Plex Sans",sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--or);margin-bottom:16px}
-.tuiles{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;position:relative;z-index:1}
-.tuile{display:flex;align-items:center;gap:12px;padding:14px;border-radius:14px;background:rgba(250,248,242,.06);
-  border:1px solid rgba(250,248,242,.12);color:var(--creme);text-decoration:none;transition:background .2s,border-color .2s}
-.tuile:hover{background:rgba(250,248,242,.12);border-color:rgba(233,176,67,.5)}
-.tuile img{width:44px;height:44px;border-radius:11px;flex-shrink:0}
-.tuile b{display:block;font-size:.98rem}
-.tuile span{display:block;font-size:.8rem;color:rgba(250,248,242,.68);line-height:1.35}
-.tuile.large{grid-column:1/-1}
+/* Relief : légère inclinaison qui suit la souris (site.js), désactivée au tactile et si « moins d'animations » */
+[data-relief]{perspective:1200px}
+[data-relief] img{transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateZ(0);
+  transition:transform .6s cubic-bezier(.2,.7,.2,1);will-change:transform}
 
-/* ── Solutions ── */
-.solutions{display:grid;grid-template-columns:repeat(6,1fr);gap:22px}
-.carte{grid-column:span 2;background:var(--blanc);border:1px solid var(--ligne);border-radius:18px;padding:28px;
-  display:flex;flex-direction:column;transition:transform .2s,box-shadow .25s}
-.carte.large{grid-column:span 3}
-.carte:hover{transform:translateY(-3px);box-shadow:var(--ombre)}
-.carte-tete{display:flex;align-items:center;gap:14px;margin-bottom:14px}
-.carte-tete img{width:52px;height:52px;border-radius:13px}
-.carte h3{font-size:1.32rem}
-.carte .domaine{font-size:.8rem;font-weight:600;color:var(--brun);letter-spacing:.03em}
-.carte .accroche{font-family:"Fraunces",Georgia,serif;font-size:1.06rem;color:var(--vert-2);margin-bottom:8px}
-.carte p{color:var(--gris);font-size:.95rem}
-.carte ul{list-style:none;margin:16px 0 22px;display:grid;gap:9px}
-.carte li{font-size:.92rem;padding-left:24px;position:relative}
-.carte li::before{content:"";position:absolute;left:2px;top:.5em;width:12px;height:7px;border-left:2px solid var(--vert-2);
+/* Bandeau des cinq logiciels */
+.bandeau-suite{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 14px;margin-top:22px}
+.bandeau-suite a{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:7px 16px 7px 8px;border-radius:999px;
+  background:var(--blanc);border:1px solid var(--ligne);text-decoration:none;font-weight:600;font-size:.94rem;color:var(--vert);
+  box-shadow:0 8px 20px -16px rgba(15,61,54,.45);transition:transform .2s,border-color .2s,box-shadow .2s}
+.bandeau-suite a:hover{transform:translateY(-2px);border-color:var(--or);box-shadow:0 14px 26px -16px rgba(15,61,54,.5)}
+.bandeau-suite img{width:32px;height:32px;border-radius:8px}
+
+/* ── Logiciels : une ligne par logiciel, visuel 3D et texte en alternance ── */
+.produit{display:grid;grid-template-columns:1.12fr 1fr;gap:48px;align-items:center;padding:28px 0}
+.produit + .produit{border-top:1px solid var(--ligne)}
+.produit.inverse .produit-visuel{order:2}
+.produit-visuel{margin:0 -12px;position:relative}
+.produit-visuel::before{content:"";position:absolute;inset:12% 8% 6%;border-radius:50%;z-index:-1;
+  background:radial-gradient(closest-side,rgba(233,176,67,.18),rgba(233,176,67,0))}
+.produit-visuel img{width:100%;height:auto}
+.produit-tete{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.produit-tete img{width:48px;height:48px;border-radius:12px}
+.produit h3{font-size:clamp(1.5rem,2.6vw,1.95rem)}
+.produit .domaine{font-size:.8rem;font-weight:600;color:var(--brun);letter-spacing:.03em}
+.produit .accroche{font-family:"Fraunces",Georgia,serif;font-size:1.2rem;color:var(--vert-2);margin-bottom:10px}
+.produit p{color:var(--gris)}
+.coches{list-style:none;margin:18px 0 6px;display:grid;gap:10px}
+.coches li{font-size:.95rem;padding-left:26px;position:relative}
+.coches li::before{content:"";position:absolute;left:2px;top:.5em;width:12px;height:7px;border-left:2px solid var(--vert-2);
   border-bottom:2px solid var(--vert-2);transform:rotate(-45deg)}
-.carte li b{color:var(--vert)}
-.carte .actions{margin-top:auto;gap:10px}
+.coches li b{color:var(--vert)}
+.produit .actions{margin-top:24px;gap:10px}
+.mention{text-align:center;font-size:.82rem;color:var(--gris);margin-top:28px}
+
+/* Apparition au défilement (site.js ajoute .vu) */
+/* Masqué seulement si le script est actif (classe .js posée dans <head>) : sans script, tout reste visible. */
+.js .apparait{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.js .apparait.vu{opacity:1;transform:none}
 
 /* ── Suite reliée ── */
 .fond-papier{background:var(--papier)}
+.tete.centre{margin-left:auto;margin-right:auto;text-align:center}
+.tete.centre .surtitre{justify-content:center}
+.suite-visuel{max-width:900px;margin:-8px auto 26px}
+.suite-visuel img{width:100%;height:auto}
 .liens{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .lien{background:var(--blanc);border:1px solid var(--ligne);border-radius:16px;padding:24px}
 .lien .paire{display:flex;align-items:center;gap:8px;margin-bottom:14px}
@@ -129,13 +145,15 @@ section{padding:88px 0}
 .engagement p{font-size:.94rem;color:var(--gris)}
 
 /* ── Bureau Windows ── */
-.bureau{background:var(--vert);color:var(--creme);border-radius:24px;padding:48px;display:grid;
-  grid-template-columns:1.2fr 1fr;gap:40px;align-items:center}
+.bureau{background:radial-gradient(70% 90% at 80% 40%,#1B5A50 0%,var(--vert) 60%);color:var(--creme);border-radius:24px;
+  padding:48px;display:grid;grid-template-columns:1fr 1.05fr;gap:24px;align-items:center;overflow:hidden}
 .bureau h2{color:var(--creme);font-size:clamp(1.6rem,3vw,2.1rem);margin-top:12px}
 .bureau .surtitre{color:var(--or)}
 .bureau p{color:rgba(250,248,242,.8);margin-top:14px}
 .bureau .note{font-size:.86rem;color:rgba(250,248,242,.62)}
-.telechargements{background:rgba(250,248,242,.06);border:1px solid rgba(233,176,67,.3);border-radius:16px;padding:8px 20px}
+.bureau-visuel{margin:-24px -4px -24px 0}
+.bureau-visuel img{width:100%;height:auto}
+.telechargements{background:rgba(250,248,242,.06);border:1px solid rgba(233,176,67,.3);border-radius:16px;padding:8px 20px;margin-top:22px}
 .dl{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid rgba(250,248,242,.1)}
 .dl:last-child{border-bottom:none}
 .dl img{width:40px;height:40px;border-radius:10px}
@@ -179,12 +197,14 @@ section{padding:88px 0}
 
 /* ── Écrans moyens et téléphones ── */
 @media (max-width:980px){
-  .accueil .wrap{grid-template-columns:1fr;gap:40px}
-  .solutions{grid-template-columns:1fr 1fr}
-  .carte,.carte.large{grid-column:span 1}
+  .accueil-grille{grid-template-columns:1fr;gap:8px}
+  .accueil-visuel{margin:0 -24px}
+  .produit{grid-template-columns:1fr;gap:12px}
+  .produit.inverse .produit-visuel{order:0}
   .liens{grid-template-columns:1fr}
   .engagements{grid-template-columns:1fr 1fr}
   .bureau{grid-template-columns:1fr;padding:32px}
+  .bureau-visuel{margin:0 -32px -32px}
 }
 @media (max-width:760px){
   .burger{display:inline-flex}
@@ -196,8 +216,9 @@ section{padding:88px 0}
   .nav .marque img{height:34px}
   section{padding:64px 0}
   .accueil{padding:44px 0 56px}
-  .solutions,.engagements,.etapes{grid-template-columns:1fr}
-  .tuiles{grid-template-columns:1fr}
+  .engagements,.etapes{grid-template-columns:1fr}
+  .bandeau-suite{justify-content:flex-start}
+  .bandeau-suite a{font-size:.88rem}
   .contact .wrap,.pied .wrap{grid-template-columns:1fr;gap:32px}
   .actions .btn{flex:1 1 auto}
 }
