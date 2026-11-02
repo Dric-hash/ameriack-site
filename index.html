@@ -22,13 +22,17 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="assets/fonts/fraunces-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/site.css?v=2026.10.27">
+<link rel="preload" href="assets/visuels/accueil-1600.webp" as="image" type="image/webp"
+      imagesrcset="assets/visuels/accueil-900.webp 900w, assets/visuels/accueil-1600.webp 1600w"
+      imagesizes="(max-width: 980px) 100vw, 640px">
+<link rel="stylesheet" href="assets/site.css?v=2026.11.02">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Organization","name":"Ameriack I.T. Solutions","url":"https://www.ameriack.com/",
  "logo":"https://www.ameriack.com/assets/brand/icone-512.png","email":"contact@ameriack.com","telephone":"+241 74 58 47 72",
  "address":{"@type":"PostalAddress","addressLocality":"Libreville","addressCountry":"GA"}}
 </script>
-<script src="assets/site.js?v=2026.10.27" defer></script>
+<script>document.documentElement.classList.add("js")</script>
+<script src="assets/site.js?v=2026.11.02" defer></script>
 </head>
 <body>
 <a class="sauter" href="#contenu">Aller au contenu</a>
@@ -51,9 +55,10 @@
 
 <main id="contenu">
 
+<!-- ═══ Accueil ═══ -->
 <section class="accueil" aria-labelledby="titre-accueil">
-  <div class="wrap">
-    <div>
+  <div class="wrap accueil-grille">
+    <div class="accueil-texte">
       <span class="surtitre">Conçu au Gabon, pour le Gabon</span>
       <h1 id="titre-accueil">La gestion de votre entreprise, <em>au franc près.</em></h1>
       <p class="chapo">Ameriack I.T. Solutions édite la suite de logiciels qui fait tourner les entreprises gabonaises :
@@ -68,35 +73,44 @@
         <li>Accompagnement au démarrage</li>
       </ul>
     </div>
-    <div class="planche">
-      <h2>La suite Ameriack</h2>
-      <div class="tuiles">
-        <a class="tuile large" href="#paiegabon"><img src="assets/apps/paiegabon.svg" alt="" width="44" height="44"><div><b>PaieGabon</b><span>Paie et ressources humaines</span></div></a>
-        <a class="tuile" href="#etats"><img src="assets/apps/etats.svg" alt="" width="44" height="44"><div><b>États Financiers</b><span>Bilan, liasse et DSF</span></div></a>
-        <a class="tuile" href="#caisse"><img src="assets/apps/caisse.svg" alt="" width="44" height="44"><div><b>Caisse</b><span>Trésorerie au centime</span></div></a>
-        <a class="tuile" href="#projets"><img src="assets/apps/projets.svg" alt="" width="44" height="44"><div><b>Projets</b><span>Chantiers et budgets</span></div></a>
-        <a class="tuile" href="#ops"><img src="assets/apps/ops.svg" alt="" width="44" height="44"><div><b>Ops</b><span>Production, stocks, flotte, énergie</span></div></a>
-      </div>
-    </div>
+    <figure class="accueil-visuel" data-relief>
+      <img src="assets/visuels/accueil-1600.webp"
+           srcset="assets/visuels/accueil-900.webp 900w, assets/visuels/accueil-1600.webp 1600w"
+           sizes="(max-width: 980px) 100vw, 640px" width="1600" height="1000" fetchpriority="high" decoding="async"
+           alt="Un ordinateur portable affiche le tableau de bord de PaieGabon, un téléphone le portail salarié ; autour flottent les symboles de la suite Ameriack : Caisse, États Financiers, Projets et Ops.">
+    </figure>
   </div>
+  <nav class="bandeau-suite wrap" aria-label="Les cinq logiciels">
+    <a href="#paiegabon"><img src="assets/apps/paiegabon.svg" alt="" width="32" height="32">PaieGabon</a>
+    <a href="#etats"><img src="assets/apps/etats.svg" alt="" width="32" height="32">États Financiers</a>
+    <a href="#caisse"><img src="assets/apps/caisse.svg" alt="" width="32" height="32">Caisse</a>
+    <a href="#projets"><img src="assets/apps/projets.svg" alt="" width="32" height="32">Projets</a>
+    <a href="#ops"><img src="assets/apps/ops.svg" alt="" width="32" height="32">Ops</a>
+  </nav>
 </section>
 
+<!-- ═══ Logiciels ═══ -->
 <section id="solutions" aria-labelledby="titre-solutions">
   <div class="wrap">
-    <div class="tete">
+    <div class="tete apparait">
       <span class="surtitre">Nos logiciels</span>
       <h2 id="titre-solutions">Cinq logiciels, une même rigueur</h2>
       <p>Chaque outil règle un problème concret de l'entreprise gabonaise, dans le respect de la réglementation locale.
         Commencez par celui dont vous avez besoin, ajoutez les autres quand vous voulez.</p>
     </div>
-    <div class="solutions">
 
-      <article class="carte large" id="paiegabon">
-        <div class="carte-tete"><img src="assets/apps/paiegabon.svg" alt="" width="52" height="52">
+    <article class="produit apparait" id="paiegabon">
+      <figure class="produit-visuel" data-relief>
+        <img src="assets/visuels/paiegabon-1200.webp" srcset="assets/visuels/paiegabon-700.webp 700w, assets/visuels/paiegabon-1200.webp 1200w"
+             sizes="(max-width: 980px) 100vw, 600px" width="1200" height="760" loading="lazy" decoding="async"
+             alt="Le tableau de bord de PaieGabon sur un écran, avec le symbole du logiciel au premier plan.">
+      </figure>
+      <div class="produit-texte">
+        <div class="produit-tete"><img src="assets/apps/paiegabon.svg" alt="" width="48" height="48">
           <div><h3>PaieGabon</h3><div class="domaine">Paie et ressources humaines</div></div></div>
         <p class="accroche">La paie juste, sans un seul calcul.</p>
         <p>Saisissez le salaire : PaieGabon calcule les cotisations CNSS et CNAMGS, l'IRPP, les bulletins et les déclarations, selon la loi gabonaise.</p>
-        <ul>
+        <ul class="coches">
           <li><b>Bulletins</b> conformes, conventions collectives et heures supplémentaires</li>
           <li><b>Salariés et journaliers</b>, pointage mensuel</li>
           <li><b>Déclarations</b> sociales et fiscales</li>
@@ -105,14 +119,21 @@
           <a class="btn btn-or btn-petit" href="https://paiegabon.com/inscription">Essai gratuit</a>
           <a class="btn btn-ligne btn-petit" href="https://paiegabon.com">Découvrir</a>
         </div>
-      </article>
+      </div>
+    </article>
 
-      <article class="carte large" id="etats">
-        <div class="carte-tete"><img src="assets/apps/etats.svg" alt="" width="52" height="52">
+    <article class="produit inverse apparait" id="etats">
+      <figure class="produit-visuel" data-relief>
+        <img src="assets/visuels/etats-1200.webp" srcset="assets/visuels/etats-700.webp 700w, assets/visuels/etats-1200.webp 1200w"
+             sizes="(max-width: 980px) 100vw, 600px" width="1200" height="760" loading="lazy" decoding="async"
+             alt="Le bilan SYSCOHADA d'un dossier dans États Financiers, avec le symbole du logiciel au premier plan.">
+      </figure>
+      <div class="produit-texte">
+        <div class="produit-tete"><img src="assets/apps/etats.svg" alt="" width="48" height="48">
           <div><h3>États Financiers</h3><div class="domaine">Comptabilité de clôture SYSCOHADA</div></div></div>
         <p class="accroche">De la balance à la DSF, en un import.</p>
         <p>Importez votre balance Excel : bilan, compte de résultat, tableau des flux de trésorerie, notes annexes et notes fiscales sont produits et contrôlés.</p>
-        <ul>
+        <ul class="coches">
           <li><b>Liasse DSF</b> en PDF et en Excel</li>
           <li><b>Grand livre</b> rapproché de la balance, écritures à examiner</li>
           <li><b>Rapprochement bancaire</b> mensuel, à partir des relevés PDF</li>
@@ -121,13 +142,21 @@
           <a class="btn btn-or btn-petit" href="https://etats.ameriack.com/inscription">Essai gratuit</a>
           <a class="btn btn-ligne btn-petit" href="https://etats.ameriack.com">Découvrir</a>
         </div>
-      </article>
+      </div>
+    </article>
 
-      <article class="carte" id="caisse">
-        <div class="carte-tete"><img src="assets/apps/caisse.svg" alt="" width="52" height="52">
+    <article class="produit apparait" id="caisse">
+      <figure class="produit-visuel" data-relief>
+        <img src="assets/visuels/caisse-1200.webp" srcset="assets/visuels/caisse-700.webp 700w, assets/visuels/caisse-1200.webp 1200w"
+             sizes="(max-width: 980px) 100vw, 600px" width="1200" height="760" loading="lazy" decoding="async"
+             alt="La trésorerie consolidée dans Caisse : banque, espèces et mobile money, avec le symbole du logiciel au premier plan.">
+      </figure>
+      <div class="produit-texte">
+        <div class="produit-tete"><img src="assets/apps/caisse.svg" alt="" width="48" height="48">
           <div><h3>Caisse</h3><div class="domaine">Trésorerie</div></div></div>
         <p class="accroche">La trésorerie de votre entreprise, au centime.</p>
-        <ul>
+        <p>Espèces, mobile money et banque réunis : chaque mouvement est classé, chaque clôture est justifiée.</p>
+        <ul class="coches">
           <li><b>Plusieurs caisses</b> : espèces, mobile money et banque</li>
           <li><b>Clôtures</b> avec comptage réel, écart expliqué</li>
           <li><b>Export comptable</b> en Excel ou en PDF</li>
@@ -136,13 +165,21 @@
           <a class="btn btn-or btn-petit" href="https://caisse.ameriack.com/inscription">Essai gratuit</a>
           <a class="btn btn-ligne btn-petit" href="https://caisse.ameriack.com">Découvrir</a>
         </div>
-      </article>
+      </div>
+    </article>
 
-      <article class="carte" id="projets">
-        <div class="carte-tete"><img src="assets/apps/projets.svg" alt="" width="52" height="52">
+    <article class="produit inverse apparait" id="projets">
+      <figure class="produit-visuel" data-relief>
+        <img src="assets/visuels/projets-1200.webp" srcset="assets/visuels/projets-700.webp 700w, assets/visuels/projets-1200.webp 1200w"
+             sizes="(max-width: 980px) 100vw, 600px" width="1200" height="760" loading="lazy" decoding="async"
+             alt="La fiche d'un chantier dans Projets : avancement, budget et dépenses, avec le symbole du logiciel au premier plan.">
+      </figure>
+      <div class="produit-texte">
+        <div class="produit-tete"><img src="assets/apps/projets.svg" alt="" width="48" height="48">
           <div><h3>Projets</h3><div class="domaine">Chantiers BTP</div></div></div>
         <p class="accroche">Vos chantiers suivis lot par lot, budget compris.</p>
-        <ul>
+        <p>Avancement, dépenses et échéances de chaque chantier, sur une seule fiche, pour décider avant qu'il ne soit trop tard.</p>
+        <ul class="coches">
           <li><b>Avancement</b> par lot, calculé pour le chantier</li>
           <li><b>Budget</b> : dépenses face au prévu, en temps réel</li>
           <li><b>Planning</b>, jalons et retards d'un coup d'œil</li>
@@ -151,13 +188,21 @@
           <a class="btn btn-or btn-petit" href="https://projets.ameriack.com/inscription">Essai gratuit</a>
           <a class="btn btn-ligne btn-petit" href="https://projets.ameriack.com">Découvrir</a>
         </div>
-      </article>
+      </div>
+    </article>
 
-      <article class="carte" id="ops">
-        <div class="carte-tete"><img src="assets/apps/ops.svg" alt="" width="52" height="52">
+    <article class="produit apparait" id="ops">
+      <figure class="produit-visuel" data-relief>
+        <img src="assets/visuels/ops-1200.webp" srcset="assets/visuels/ops-700.webp 700w, assets/visuels/ops-1200.webp 1200w"
+             sizes="(max-width: 980px) 100vw, 600px" width="1200" height="760" loading="lazy" decoding="async"
+             alt="Le parc de véhicules dans Ops, avec le symbole du logiciel au premier plan.">
+      </figure>
+      <div class="produit-texte">
+        <div class="produit-tete"><img src="assets/apps/ops.svg" alt="" width="48" height="48">
           <div><h3>Ops</h3><div class="domaine">Opérations</div></div></div>
         <p class="accroche">Production, stocks, flotte et énergie sous contrôle.</p>
-        <ul>
+        <p>Ordres de fabrication, stocks, véhicules et compteurs suivis au même endroit, avec leurs coûts.</p>
+        <ul class="coches">
           <li><b>Production et stocks</b> : ordres de fabrication, rentabilité</li>
           <li><b>Flotte</b> : véhicules, entretiens, cartes carburant</li>
           <li><b>Énergie</b> : compteurs, groupes électrogènes</li>
@@ -166,31 +211,38 @@
           <a class="btn btn-or btn-petit" href="https://ops.ameriack.com/inscription">Essai gratuit</a>
           <a class="btn btn-ligne btn-petit" href="https://ops.ameriack.com">Découvrir</a>
         </div>
-      </article>
+      </div>
+    </article>
 
-    </div>
+    <p class="mention">Visuels réalisés en 3D à partir de captures réelles des logiciels, avec des données de démonstration.</p>
   </div>
 </section>
 
+<!-- ═══ Suite reliée ═══ -->
 <section id="suite" class="fond-papier" aria-labelledby="titre-suite">
   <div class="wrap">
-    <div class="tete">
+    <div class="tete centre apparait">
       <span class="surtitre">Une suite reliée</span>
       <h2 id="titre-suite">Ce que vous saisissez une fois sert partout</h2>
       <p>Les logiciels Ameriack se parlent : moins de ressaisie, moins d'erreurs, des chiffres qui concordent.</p>
     </div>
+    <figure class="suite-visuel apparait" data-relief>
+      <img src="assets/visuels/suite-1600.webp" srcset="assets/visuels/suite-900.webp 900w, assets/visuels/suite-1600.webp 1600w"
+           sizes="(max-width: 980px) 100vw, 900px" width="1600" height="900" loading="lazy" decoding="async"
+           alt="Le symbole Ameriack au centre, relié par des liens dorés aux cinq logiciels : PaieGabon, États Financiers, Caisse, Projets et Ops.">
+    </figure>
     <div class="liens">
-      <div class="lien">
+      <div class="lien apparait">
         <div class="paire"><img src="assets/apps/paiegabon.svg" alt="PaieGabon" width="36" height="36"><i></i><img src="assets/apps/etats.svg" alt="États Financiers" width="36" height="36"></div>
         <h3>Votre société, déjà renseignée</h3>
         <p>Une clé de liaison PaieGabon reprend la fiche de votre société dans États Financiers, et la paie de chaque mois est rapprochée de votre comptabilité.</p>
       </div>
-      <div class="lien">
+      <div class="lien apparait">
         <div class="paire"><img src="assets/apps/paiegabon.svg" alt="PaieGabon" width="36" height="36"><i></i><img src="assets/apps/ops.svg" alt="Ops" width="36" height="36"></div>
         <h3>Un seul identifiant</h3>
         <p>Les entreprises clientes de PaieGabon se connectent à Ameriack Ops avec leur compte PaieGabon.</p>
       </div>
-      <div class="lien">
+      <div class="lien apparait">
         <div class="paire"><img src="assets/apps/caisse.svg" alt="Caisse" width="36" height="36"><i class="plus"></i><img src="assets/apps/etats.svg" alt="États Financiers" width="36" height="36"></div>
         <h3>Une trésorerie justifiée</h3>
         <p>La caisse est tenue au jour le jour, les banques sont rapprochées chaque mois : à la clôture, chaque solde de trésorerie est expliqué.</p>
@@ -199,55 +251,64 @@
   </div>
 </section>
 
+<!-- ═══ Engagements ═══ -->
 <section aria-labelledby="titre-engagements">
   <div class="wrap">
-    <div class="tete">
+    <div class="tete apparait">
       <span class="surtitre">Nos engagements</span>
       <h2 id="titre-engagements">Des logiciels faits pour le terrain gabonais</h2>
     </div>
     <div class="engagements">
-      <div class="engagement"><h3>La réglementation locale</h3><p>CNSS, CNAMGS et IRPP pour la paie ; SYSCOHADA révisé et DSF pour les comptes ; montants en FCFA.</p></div>
-      <div class="engagement"><h3>Vos données à vous</h3><p>Chaque entreprise ne voit que ses propres données ; chaque utilisateur n'a que les droits que vous lui donnez.</p></div>
-      <div class="engagement"><h3>Un paiement simple</h3><p>Mobile money, virement ou espèces, et un reçu à chaque paiement validé.</p></div>
-      <div class="engagement"><h3>Partout avec vous</h3><p>Dans le navigateur, installé sur votre téléphone ou, pour la paie et la caisse, sous Windows.</p></div>
+      <div class="engagement apparait"><h3>La réglementation locale</h3><p>CNSS, CNAMGS et IRPP pour la paie ; SYSCOHADA révisé et DSF pour les comptes ; montants en FCFA.</p></div>
+      <div class="engagement apparait"><h3>Vos données à vous</h3><p>Chaque entreprise ne voit que ses propres données ; chaque utilisateur n'a que les droits que vous lui donnez.</p></div>
+      <div class="engagement apparait"><h3>Un paiement simple</h3><p>Mobile money, virement ou espèces, et un reçu à chaque paiement validé.</p></div>
+      <div class="engagement apparait"><h3>Partout avec vous</h3><p>Dans le navigateur, installé sur votre téléphone ou, pour la paie et la caisse, sous Windows.</p></div>
     </div>
   </div>
 </section>
 
+<!-- ═══ Applications Windows ═══ -->
 <section id="bureau" aria-labelledby="titre-bureau">
   <div class="wrap">
-    <div class="bureau">
-      <div>
+    <div class="bureau apparait">
+      <div class="bureau-texte">
         <span class="surtitre">Applications Windows</span>
         <h2 id="titre-bureau">PaieGabon et Caisse, installés sur votre poste</h2>
         <p>Une icône sur le bureau, l'application en plein écran, sans passer par le navigateur. Une connexion Internet reste nécessaire.</p>
+        <div class="telechargements">
+          <div class="dl"><img src="assets/apps/paiegabon.svg" alt="" width="40" height="40"><div><b>PaieGabon</b><span>Windows · installateur .exe</span></div>
+            <a href="https://github.com/Dric-hash/ameriack-site/releases/download/v1.0.0/PaieGabon.Setup.1.0.0.exe">Télécharger</a></div>
+          <div class="dl"><img src="assets/apps/caisse.svg" alt="" width="40" height="40"><div><b>Caisse Ameriack</b><span>Windows · installateur .exe</span></div>
+            <a href="https://github.com/Dric-hash/ameriack-site/releases/download/v1.0.0/Caisse.Ameriack.Setup.1.0.0.exe">Télécharger</a></div>
+        </div>
         <p class="note">À la première ouverture, Windows peut afficher un avertissement, habituel pour un nouveau logiciel : cliquez sur
           « Informations complémentaires », puis « Exécuter quand même ». L'éditeur indiqué est Ameriack I.T. Solutions.</p>
       </div>
-      <div class="telechargements">
-        <div class="dl"><img src="assets/apps/paiegabon.svg" alt="" width="40" height="40"><div><b>PaieGabon</b><span>Windows · installateur .exe</span></div>
-          <a href="https://github.com/Dric-hash/ameriack-site/releases/download/v1.0.0/PaieGabon.Setup.1.0.0.exe">Télécharger</a></div>
-        <div class="dl"><img src="assets/apps/caisse.svg" alt="" width="40" height="40"><div><b>Caisse Ameriack</b><span>Windows · installateur .exe</span></div>
-          <a href="https://github.com/Dric-hash/ameriack-site/releases/download/v1.0.0/Caisse.Ameriack.Setup.1.0.0.exe">Télécharger</a></div>
-      </div>
+      <figure class="bureau-visuel" data-relief>
+        <img src="assets/visuels/windows-1200.webp" srcset="assets/visuels/windows-700.webp 700w, assets/visuels/windows-1200.webp 1200w"
+             sizes="(max-width: 980px) 100vw, 560px" width="1200" height="800" loading="lazy" decoding="async"
+             alt="Un ordinateur portable affiche la trésorerie dans Caisse, entouré des symboles de PaieGabon et de Caisse.">
+      </figure>
     </div>
   </div>
 </section>
 
+<!-- ═══ Démarrer ═══ -->
 <section id="demarrer" class="fond-papier" aria-labelledby="titre-demarrer">
   <div class="wrap">
-    <div class="tete">
+    <div class="tete apparait">
       <span class="surtitre">Démarrer</span>
       <h2 id="titre-demarrer">Opérationnel en trois étapes</h2>
     </div>
     <ol class="etapes">
-      <li><h3>Créez votre compte</h3><p>En ligne, en quelques minutes, sur le logiciel de votre choix. L'essai est gratuit pendant 30 jours, sans engagement.</p></li>
-      <li><h3>Paramétrez votre entreprise</h3><p>Votre société, vos utilisateurs, vos données de départ. Nous vous accompagnons sur WhatsApp si besoin.</p></li>
-      <li><h3>Abonnez-vous</h3><p>Choisissez votre offre et réglez par mobile money, virement ou espèces : votre accès continue sans interruption.</p></li>
+      <li class="apparait"><h3>Créez votre compte</h3><p>En ligne, en quelques minutes, sur le logiciel de votre choix. L'essai est gratuit pendant 30 jours, sans engagement.</p></li>
+      <li class="apparait"><h3>Paramétrez votre entreprise</h3><p>Votre société, vos utilisateurs, vos données de départ. Nous vous accompagnons sur WhatsApp si besoin.</p></li>
+      <li class="apparait"><h3>Abonnez-vous</h3><p>Choisissez votre offre et réglez par mobile money, virement ou espèces : votre accès continue sans interruption.</p></li>
     </ol>
   </div>
 </section>
 
+<!-- ═══ Contact ═══ -->
 <section id="contact" class="contact" aria-labelledby="titre-contact">
   <div class="wrap">
     <div>
