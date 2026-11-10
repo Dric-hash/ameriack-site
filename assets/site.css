@@ -207,12 +207,12 @@ section{padding:88px 0}
   .bureau-visuel{margin:0 -32px -32px}
 }
 @media (max-width:760px){
-  .burger{display:inline-flex}
+  .burger{display:inline-flex;order:2}
   .menu{display:none;position:absolute;top:72px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;
     background:var(--creme);border-bottom:1px solid var(--ligne);padding:8px 24px 18px}
   .menu.ouvert{display:flex}
   .menu a{display:block;padding:12px 0}
-  .menu .btn{margin-top:8px}
+  .menu .btn{margin-top:8px;padding:12px 15px;text-align:center;display:flex}
   .nav .marque img{height:34px}
   section{padding:64px 0}
   .accueil{padding:44px 0 56px}
