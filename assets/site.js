@@ -1,4 +1,4 @@
-// Menu mobile, année du pied de page, apparition au défilement et relief des visuels 3D.
+// Menu mobile, année du pied de page, arrivée du visuel d'accueil et repère du logiciel affiché.
 // Aucune dépendance, aucun traceur.
 (function () {
   var b = document.querySelector(".burger");
@@ -13,49 +13,81 @@
       a.addEventListener("click", function () {
         menu.classList.remove("ouvert");
         b.setAttribute("aria-expanded", "false");
+        b.setAttribute("aria-label", "Ouvrir le menu");
       });
     });
   }
   var an = document.querySelector("[data-annee]");
   if (an) { an.textContent = new Date().getFullYear(); }
 
-  var reduit = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  // Apparition au défilement : sans IntersectionObserver ou avec « moins d'animations », tout est visible.
-  var blocs = document.querySelectorAll(".apparait");
-  if (reduit || !("IntersectionObserver" in window)) {
-    blocs.forEach(function (el) { el.classList.add("vu"); });
-  } else {
-    var io = new IntersectionObserver(function (entrees) {
-      entrees.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add("vu"); io.unobserve(e.target); }
-      });
-    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
-    blocs.forEach(function (el) { io.observe(el); });
+  // Visuel d'accueil : une seule arrivée, quand l'image est chargée (sinon visible tout de suite).
+  var accueil = document.querySelector(".accueil-visuel");
+  if (accueil) {
+    var img = accueil.querySelector("img");
+    var montrer = function () { accueil.classList.add("pret"); };
+    if (!img || img.complete) { montrer(); } else { img.addEventListener("load", montrer); img.addEventListener("error", montrer); }
+    setTimeout(montrer, 2500);
   }
 
-  // Relief : le visuel s'incline de quelques degrés vers la souris (souris uniquement).
-  var souris = window.matchMedia && window.matchMedia("(pointer: fine)").matches;
-  if (!reduit && souris) {
-    document.querySelectorAll("[data-relief]").forEach(function (fig) {
-      var img = fig.querySelector("img");
-      if (!img) { return; }
-      var attente = null;
-      fig.addEventListener("pointermove", function (ev) {
-        var r = fig.getBoundingClientRect();
-        var x = (ev.clientX - r.left) / r.width - 0.5;
-        var y = (ev.clientY - r.top) / r.height - 0.5;
-        if (attente) { cancelAnimationFrame(attente); }
-        attente = requestAnimationFrame(function () {
-          img.style.setProperty("--ry", (x * 7).toFixed(2) + "deg");
-          img.style.setProperty("--rx", (-y * 5).toFixed(2) + "deg");
-        });
+  // Logiciels : l'index devient une liste d'onglets ; un seul logiciel affiché à la fois.
+  // Sans script, toutes les fiches restent visibles l'une sous l'autre et les liens mènent à chacune.
+  var bloc = document.querySelector(".logiciels");
+  var liens = bloc ? Array.prototype.slice.call(bloc.querySelectorAll(".index a")) : [];
+  if (liens.length) {
+    var liste = bloc.querySelector(".index");
+    liste.setAttribute("role", "tablist");
+    liste.setAttribute("aria-orientation", window.matchMedia("(max-width:1080px)").matches ? "horizontal" : "vertical");
+    var fiches = {};
+    liens.forEach(function (a) {
+      var id = a.getAttribute("href").slice(1), f = document.getElementById(id);
+      fiches[id] = f;
+      a.parentNode.setAttribute("role", "presentation");
+      a.setAttribute("role", "tab"); a.id = "onglet-" + id; a.setAttribute("aria-controls", id);
+      f.setAttribute("role", "tabpanel"); f.setAttribute("aria-labelledby", a.id); f.setAttribute("tabindex", "-1");
+      var img = f.querySelector(".fiche-visuel img"); if (img) { img.loading = "eager"; }
+    });
+    bloc.classList.add("onglets");
+    var choisir = function (id, focus) {
+      if (!fiches[id]) { return false; }
+      liens.forEach(function (a) {
+        var oui = a.getAttribute("aria-controls") === id;
+        a.setAttribute("aria-selected", oui ? "true" : "false"); a.tabIndex = oui ? 0 : -1;
+        a.classList.toggle("actif", oui);
+        var f = fiches[a.getAttribute("aria-controls")];
+        if (oui) { if (f.hidden) { f.hidden = false; f.classList.remove("entre"); void f.offsetWidth; f.classList.add("entre"); } }
+        else { f.hidden = true; }
+        if (oui && focus) { a.focus(); }
+        if (oui && liste.scrollWidth > liste.clientWidth) { liste.scrollTo({ left: a.offsetLeft - 20, behavior: "smooth" }); }
       });
-      fig.addEventListener("pointerleave", function () {
-        if (attente) { cancelAnimationFrame(attente); }
-        img.style.setProperty("--ry", "0deg");
-        img.style.setProperty("--rx", "0deg");
+      return true;
+    };
+    liens.forEach(function (a, i) {
+      a.addEventListener("click", function (ev) { ev.preventDefault(); choisir(a.getAttribute("aria-controls")); });
+      a.addEventListener("keydown", function (ev) {
+        var k = ev.key, j = null;
+        if (k === "ArrowDown" || k === "ArrowRight") { j = (i + 1) % liens.length; }
+        else if (k === "ArrowUp" || k === "ArrowLeft") { j = (i - 1 + liens.length) % liens.length; }
+        else if (k === "Home") { j = 0; } else if (k === "End") { j = liens.length - 1; }
+        if (j !== null) { ev.preventDefault(); choisir(liens[j].getAttribute("aria-controls"), true); }
       });
     });
+    // Liens vers #paiegabon, #compta… (rangée de l'accueil, autres pages) : ouvrir l'onglet et y descendre.
+    var depuisAdresse = function () {
+      var id = location.hash.slice(1);
+      if (choisir(id)) { document.getElementById("solutions").scrollIntoView(); return true; }
+      return false;
+    };
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      var id = a.getAttribute("href").slice(1);
+      if (fiches[id] && !a.closest(".index")) {
+        a.addEventListener("click", function (ev) {
+          ev.preventDefault(); choisir(id);
+          document.getElementById("solutions").scrollIntoView({ behavior: "smooth" });
+          history.replaceState(null, "", "#" + id);
+        });
+      }
+    });
+    if (!depuisAdresse()) { choisir(liens[0].getAttribute("aria-controls")); }
+    window.addEventListener("hashchange", depuisAdresse);
   }
 })();
