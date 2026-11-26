@@ -8,7 +8,7 @@ Page statique, servie sur https://www.ameriack.com (aucun serveur d'application,
 - `assets/site.css`, `assets/site.js` : styles, menu mobile, apparition au défilement et léger relief des visuels (souris uniquement, coupé si « moins d'animations »).
 - `assets/visuels/` : rendus 3D (Blender Cycles) en WebP, deux tailles chacun. Écrans = vraies captures des logiciels, données de démonstration.
 - `assets/brand/` : identité Ameriack I.T. Solutions (logo, logo inversé, symbole, favicon, icônes, image de partage 1200×630).
-- `assets/apps/` : symboles des cinq logiciels (repris de chaque application).
+- `assets/apps/` : symboles des six logiciels (repris de chaque application).
 - `assets/fonts/` : Fraunces et IBM Plex Sans, hébergées sur le site (licence SIL OFL).
 - `site.webmanifest`, `robots.txt`, `sitemap.xml`.
 
